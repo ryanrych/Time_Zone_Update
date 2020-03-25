@@ -8,19 +8,19 @@ from urllib import *
 #Azores = @3411865
 #Godthab = @3421324
 
-africanCountries=["algeria","egypt","morocco","zimbabwe","south-africa","liberia","kenya"]
-asianCountries=["kazakhstan","jordan","iraq","azerbaijan","thailand","china","sri-lanka","bangladesh","palestine","russia","indonesia","Israel","afghanistan","pakistan","nepal","india","malaysia","oman","saudi-arabia","south-korea","singapore","taiwan","uzbekistan","georgia","iran","japan","mongolia","armenia"]
-europeanCountries=["netherlands","greece","serbia","germany","slovakia","belgium","romania","hungary","denmark","ireland","finland","turkey","portugal","uk","spain","belarus","russia","france","czech-republic","latvia","italy","bosnia-herzegovina","republic-of-macedonia","bulgaria","sweden","estonia","austria","lithuania","warsaw","croatia"]
-pacificCountries=["samoa","new-zealand","tokelau","marshall-islands","france","papua-new-guinea","usa"]
-americanCountires=["usa","argentina","colombia","venezuela","mexico","canada","bolivia","peru","uruguay","chile","brazil","antigua-and-barbuda","us-virgin",]
+africanCountries={"Algiers":"algeria","Cairo":"egypt","Casablanca":"morocco","Harare":"zimbabwe","Johannesburg":"south-africa","Monrovia":"liberia","Nairobi":"kenya"}
+asianCountries={"Almaty":"kazakhstan","Amman":"jordan","Baghdad":"iraq","Baku":"azerbaijan","Bangkok":"thailand","Chongqing":"china","Colombo":"sri-lanka","Dhaka":"bangladesh","Hebron":"palestine","Irkutsk":"russia","Jakarta":"indonesia","Jerusalem":"israel","Kabul":"afghanistan","Karachi":"pakistan","Kathmandu":"nepal","Kolkata":"india","Krasnoyarsk":"russia","Kuala_Lumpur":"malaysia","Magadan":"russia","Muscat":"oman","Novosibirsk":"russia","Riyadh":"saudi-arabia","Seoul":"south-korea","Singapore":"singapore","Shanghai":"china","Taipei":"taiwan","Tashkent":"uzbekistan","Tbilisi":"georgia","Tehran":"iran","Tokyo":"japan","Ulaanbaatar":"mongolia","Urumqi":"china","Vladivostok":"russia","Yakutsk":"russia","Yekaterinburg":"russia","Yerevan":"armenia"}
+europeanCountries={"Amsterdam":"netherlands","Athens":"greece","Belgrade":"serbia","Berlin":"germany","Bratislava":"slovakia","Brussels":"belgium","Bucharest":"romania","Budapest":"hungary","Copenhagen":"denmark","Dublin":"ireland","Helsinki":"finland","Istanbul":"turkey","Lisbon":"portugal","London":"uk","Madrid":"spain","Ljublijana":"slovenia","Minsk":"belarus","Moscow":"russia","Paris":"france","Prague":"czech-republic","Riga":"latvia","Rome":"italy","Sarajevo":"bosnia-herzegovina","Skopje":"republic-of-macedonia","Sofia":"bulgaria","Stockholm":"sweden","Tallinn":"estonia","Vienna":"austria","Vilnius":"lithuania","Warsaw":"poland","Zagreb":"croatia"}
+pacificCountries={"Apia":"samoa","Auckland":"new-zealand","Chatham-Islands":"new-zealond","Fakaofo":"tokelau","Honolulu":"usa","Majuro":"marshall-islands","Noumea":"france","Port-Moresby":"papua-new-guinea","Midway":"usa","Pago-Pago":"usa"}
+americanCountires={"Anchorage":"usa","Adak":"usa","buenos-aires":"argentina","Bogota":"colombia","Boise":"usa","Caracas":"venezuela","Chicago":"usa","Chihuahua":"mexico","Dawson-Creek":"canada","Denver":"usa","Detroit":"usa","Edmonton":"canada","Fort-Nelson":"canada","Glace-Bay":"canada","happy-valley-goose-bay":"canada","halifax":"canada","Indianapolis":"usa","Juneau":"usa","La-Paz":"bolivia","Lima":"peru","Los-Angeles":"usa","Mazatlan":"mexico","Monterrey":"mexico","Montevideo":"uruguay","Montreal":"canada","New-York":"usa","Nome":"usa","Phoenix":"usa","Regina":"canada","Santiago":"chile","Sao-Paulo":"brazil","Saint-Johns":"antigua-and-barbuda","Saint-Thomas":"us-virgin","Thunder-Bay":"canada","Tijuana":"Mexico","Toronto":"canada","Whitehorse":"canada","Winnipeg":"canada"}
 
 table=[]
 file=open("timezones.csv","r")
-
 for x in file:
     table.append(x.split(","))
-
 file.close()
 
-s=""
-print s.join(list(urlopen("https://www.timeanddate.com/worldclock/algeria/algiers")))
+for i in range(len(table)):
+    city=table[i][0].split("/")[1]
+
+    continent=table[i][0].split("/")[0]
