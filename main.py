@@ -93,25 +93,24 @@ for i in range(len(table)):
     if start==-1:
         table[i][2]="FALSE"
         table[i][3]=0
-        for j in range(4,12):
+        for j in range(4,13):
             table[i][j]="NULL"
-        table[i][12]=0
     else:
         table[i][2]="TRUE"
+        table[i][3]=3600
         step=start+35
         day=""
         while page[step]!="<":
             day+=page[step]
             step+=1
         day=day.split()
-        print day
-        table[i][4]=months.index(day[1])
-        table[i][6]=day[0][:-1]
-        month = monthcalendar(datetime.now().year, table[i][4])
+        table[i][4]=months.index(day[1])+1
+        month=monthcalendar(datetime.now().year,table[i][4])
         for j in range(len(month)):
             if int(day[2][:-1]) in month[j]:
-                table[i][5]
+                table[i][5]=j+1
                 break
+        table[i][6] = day[0][:-1]
         start=page.find("When local standard time")
         start=page.find("<strong>",start)
         start+=8
@@ -121,6 +120,36 @@ for i in range(len(table)):
             time+=page[step]
             step+=1
         table[i][7]=time
+
+        if page.find("End DST:")==-1:
+            for j in range(8,12):
+                table[i][j]="NULL"
+            table[i][12]=0
+        else:
+            start=page.find("Daylight Saving Time End")
+            start=page.find("<br>",start)
+            start+=4
+            day=""
+            step=start
+            while page[step]!="<":
+                day+=page[step]
+                step+=1
+            day=day.split()
+            table[i][8]=months.index(day[1])+1
+            month=monthcalendar(datetime.now().year,table[i][8])
+            for j in range(len(month)):
+                if int(day[2][:-1]) in month[j]:
+                    table[i][9]=j+1
+                    break
+            table[i][10] = day[0][:-1]
+            step+=8
+            time=""
+            while page[step]!="<":
+                time+=page[step]
+                step+=1
+            table[i][11]=time
+            table[i][12]=0
+
 
 
 for x in table:
