@@ -150,7 +150,12 @@ for i in range(len(table)):
             table[i][11]=time
             table[i][12]=0
 
+newFile=open("OVtimezones_updated_%s-%s-%s.txt" % (str(datetime.now().month),str(datetime.now().day),str(datetime.now().year)),"w")
 
+newFile.write("id,gmt_offset_seconds,uses_dst,dst seconds,start month,start week,start day,start hour,end month,end week,end day,end hour,dst end seconds,\n")
+for i in range(len(table)):
+    for j in range(len(table[i])):
+        newFile.write(str(table[i][j])+',')
+    newFile.write('\n')
 
-for x in table:
-    print x
+newFile.close()
